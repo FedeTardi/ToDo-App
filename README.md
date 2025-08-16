@@ -1,50 +1,95 @@
-# Welcome to your Expo app 👋
+# 📝 ToDo App – React Native
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A **feature-rich To-Do List app** built with **React Native**, helping you manage tasks efficiently. Supports **custom colors, due dates, tags, priorities, and timestamps**, offering a complete and visually appealing task management experience.  
 
-## Get started
+---
 
-1. Install dependencies
+## ✨ Features
 
+- ✅ **Add, Edit, and Remove Tasks** – Easily manage your to-do items.  
+- 🎨 **Custom Color Selection** – Choose a color for each task for quick categorization.  
+- 📅 **Optional Due Date** – Set a due date to stay organized.  
+- 🏷️ **Tags** – Add multiple tags for better filtering and organization.    
+- ⏰ **Timestamps** – Automatically tracks creation date.  
+- ✔️ **Completed Status** – Mark tasks as completed with visual indicators.  
+- 📜 **Scrollable Task List** – Smooth scrolling with FlatList.  
+- 📱 **Responsive UI** – Card-based design with checkmarks, colors, and tags.  
+
+---
+
+## 🖼️ Screens
+
+1. **Task List Screen** – Shows all tasks in a scrollable list with colors, tags, priorities, and creation dates.  
+2. **Add Task Screen** – Allows adding new tasks with optional description, color, due date, tags, and priority.  
+
+> Add screenshots or GIFs here in the future! 📸  
+
+---
+
+## 🚀 Installation
+
+1. Clone the repository:  
    ```bash
-   npm install
-   ```
+   git clone https://github.com/yourusername/todo-app.git
+   cd todo-app
+Install dependencies:
 
-2. Start the app
+bash
+Copia
+Modifica
+npm install
+Run the app (iOS):
 
-   ```bash
-   npx expo start
-   ```
+bash
+Copia
+Modifica
+npx react-native run-ios
+Or (Android):
 
-In the output, you'll find options to open the app in a
+bash
+Copia
+Modifica
+npx react-native run-android
+📦 Dependencies
+React Native – core framework
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+React Navigation – for screen navigation
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+@react-native-community/datetimepicker – for due dates
 
-## Get a fresh project
+react-native-vector-icons – for icons like checkmarks
 
-When you're ready, run:
+🗂️ Folder Structure
+css
+Copia
+Modifica
+project-root/
+├── src/
+│   ├── components/
+│   │   └── ToDoCard.tsx
+│   ├── screens/
+│   │   ├── ToDoListScreen.tsx
+│   │   └── AddToDoScreen.tsx
+│   ├── assets/
+│   ├── hooks/
+│   └── styles/
+├── App.tsx
+└── package.json
+📝 How to Use
+Launch the app.
 
-```bash
-npm run reset-project
-```
+View tasks on the Task List Screen.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Tap the ➕ button to add a new task.
 
-## Learn more
+Fill in the title, optional description, choose a color, set a due date, add tags, and choose priority.
 
-To learn more about developing your project with Expo, look at the following resources:
+Save the task and see it appear in the list.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Tap a tag or color to filter tasks (optional future enhancement).
 
-## Join the community
+🤝 Contributing
+Contributions are welcome! Feel free to submit issues or pull requests to improve the app.
 
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+📄 License
+This project is licensed under the MIT License.

@@ -22,8 +22,6 @@ A **feature-rich To-Do List app** built with **React Native**, helping you manag
 1. **Task List Screen** – Shows all tasks in a scrollable list with colors, tags, priorities, and creation dates.  
 2. **Add Task Screen** – Allows adding new tasks with optional description, color, due date, tags, and priority.  
 
-> Add screenshots or GIFs here in the future! 📸  
-
 ---
 
 ## 🚀 Installation

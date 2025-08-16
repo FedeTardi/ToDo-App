@@ -24,72 +24,14 @@ A **feature-rich To-Do List app** built with **React Native**, helping you manag
 
 ---
 
-## 🚀 Installation
-
-1. Clone the repository:  
-   ```bash
-   git clone https://github.com/yourusername/todo-app.git
-   cd todo-app
-Install dependencies:
-
-bash
-Copia
-Modifica
-npm install
-Run the app (iOS):
-
-bash
-Copia
-Modifica
-npx react-native run-ios
-Or (Android):
-
-bash
-Copia
-Modifica
-npx react-native run-android
-📦 Dependencies
+## 📦 Dependencies
 React Native – core framework
-
 React Navigation – for screen navigation
-
 @react-native-community/datetimepicker – for due dates
-
 react-native-vector-icons – for icons like checkmarks
 
-🗂️ Folder Structure
-```bash
-   css
-   Copia
-   Modifica
-   project-root/
-   ├── src/
-   │   ├── components/
-   │   │   └── ToDoCard.tsx
-   │   ├── screens/
-   │   │   ├── ToDoListScreen.tsx
-   │   │   └── AddToDoScreen.tsx
-   │   ├── assets/
-   │   ├── hooks/
-   │   └── styles/
-   ├── App.tsx
-   └── package.json
-
-📝 How to Use
-Launch the app.
-
-View tasks on the Task List Screen.
-
-Tap the ➕ button to add a new task.
-
-Fill in the title, optional description, choose a color, set a due date, add tags, and choose priority.
-
-Save the task and see it appear in the list.
-
-Tap a tag or color to filter tasks (optional future enhancement).
-
-🤝 Contributing
+## 🤝 Contributing
 Contributions are welcome! Feel free to submit issues or pull requests to improve the app.
 
-📄 License
+## 📄 License
 This project is licensed under the MIT License.

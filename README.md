@@ -58,21 +58,23 @@ React Navigation – for screen navigation
 react-native-vector-icons – for icons like checkmarks
 
 🗂️ Folder Structure
-css
-Copia
-Modifica
-project-root/
-├── src/
-│   ├── components/
-│   │   └── ToDoCard.tsx
-│   ├── screens/
-│   │   ├── ToDoListScreen.tsx
-│   │   └── AddToDoScreen.tsx
-│   ├── assets/
-│   ├── hooks/
-│   └── styles/
-├── App.tsx
-└── package.json
+```bash
+   css
+   Copia
+   Modifica
+   project-root/
+   ├── src/
+   │   ├── components/
+   │   │   └── ToDoCard.tsx
+   │   ├── screens/
+   │   │   ├── ToDoListScreen.tsx
+   │   │   └── AddToDoScreen.tsx
+   │   ├── assets/
+   │   ├── hooks/
+   │   └── styles/
+   ├── App.tsx
+   └── package.json
+
 📝 How to Use
 Launch the app.
 

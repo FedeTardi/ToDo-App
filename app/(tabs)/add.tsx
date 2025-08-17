@@ -1,12 +1,23 @@
-import React, { useState } from "react";
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert, ScrollView, FlatList, Touchable } from "react-native";
-import DateTimePicker from "@react-native-community/datetimepicker";
+import { RootStackParamList } from "@/types";
 import Ionicons from '@expo/vector-icons/Ionicons';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import React, { useState } from "react";
+import { Alert, FlatList, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+
+type NavigationProp = NativeStackNavigationProp<RootStackParamList, "add">;
+
+import { ToDo } from '@/types';
 
 const COLORS = ["red", "#f58021", "#eac605", "green", "#008fff", "blue", "purple"];
 
-export default function AddToDoScreen({ navigation, route }: any) {
+export default async function AddToDoScreen() {
+    const [todos, setTodos] = useState<ToDo[]>([]);
+    const navigation = useNavigation<NavigationProp>();
+
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [color, setColor] = useState("red");
@@ -15,28 +26,30 @@ export default function AddToDoScreen({ navigation, route }: any) {
     const [tags, setTags] = useState<string[]>([]);
     const [tagInput, setTagInput] = useState("");
 
-    const handleAdd = () => {
-        if (!title.trim()) {
-            Alert.alert("Errore", "Inserisci un titolo");
-            return;
-        }
+    const addTodo = () => {
+        if (!title.trim()) return Alert.alert("Errore", "Inserisci un titolo");
 
-        const newTask = {
+        const newTodo: ToDo = {
             id: Date.now().toString(),
+            createdAt: new Date().toISOString(),
+            completed: false,
             title,
             description,
             color,
-            createdAt: new Date(),
-            dueDate,
-            tags,
-            completed: false
+            dueDate: dueDate?.toISOString(),
+            tags
         };
 
-        /*
-        route.params?.onAdd?.(newTask);
-        navigation.goBack();
-        */
+        AsyncStorage.getItem("todos")
+            .then(stored => {
+                const currentTodos: ToDo[] = stored ? JSON.parse(stored) : [];
+                const updatedTodos = [...currentTodos, newTodo];
+                return AsyncStorage.setItem("todos", JSON.stringify(updatedTodos));
+            })
+            .then(() => navigation.goBack())
+            .catch(e => console.error(e));
     };
+
 
     const addTag = () => {
         if (tagInput.trim() && !tags.includes(tagInput.trim())) {
@@ -58,6 +71,16 @@ export default function AddToDoScreen({ navigation, route }: any) {
     const removeTag = (tagToRemove: string) => {
         setTags(tags.filter(tag => tag !== tagToRemove));
     }
+
+    const saveTodos = async (newTodos: ToDo[]) => {
+        // save ToDo in async
+        try {
+            await AsyncStorage.setItem("todos", JSON.stringify(newTodos));
+            setTodos(newTodos);
+        } catch (e) {
+            console.error("Error saving todos", e);
+        }
+    };
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
@@ -133,7 +156,7 @@ export default function AddToDoScreen({ navigation, route }: any) {
                         onSubmitEditing={addTag}
                     />
                     <TouchableOpacity style={styles.addTagButton} onPress={addTag}>
-                        <Ionicons color={'white'} name="add" size={20} />
+                        <Ionicons color={'#6ad45a'} name="add" size={20} />
                     </TouchableOpacity>
                 </View>
                 <FlatList
@@ -154,8 +177,17 @@ export default function AddToDoScreen({ navigation, route }: any) {
                 />
 
 
-                <TouchableOpacity style={styles.button} onPress={handleAdd}>
-                    <Text style={styles.buttonText}>Aggiungi To-Do</Text>
+                <TouchableOpacity style={styles.button} onPress={() => addTodo()}>
+                    <View
+                        style={{
+                            flexDirection: 'row',
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}
+                    >
+                        <Ionicons name='checkmark' color='white' size={22} style={{ marginHorizontal: 10 }} />
+                        <Text style={styles.buttonText}>Aggiungi To-Do</Text>
+                    </View>
                 </TouchableOpacity>
             </ScrollView>
         </SafeAreaView>
@@ -200,17 +232,16 @@ const styles = StyleSheet.create({
     },
 
     button: {
-        backgroundColor: "green",
+        backgroundColor: "#6ad45a",
         padding: 15,
-        borderRadius: 10,
+        borderRadius: 999,
         alignItems: "center",
         marginTop: 30,
     },
 
     buttonText: {
-        color: "#fff",
+        color: "white",
         fontSize: 18,
-        fontWeight: "bold",
     },
 
     colorContainer: {
@@ -240,20 +271,23 @@ const styles = StyleSheet.create({
     },
 
     addTagButton: {
-        backgroundColor: "green",
+        backgroundColor: "white",
+        borderColor: '#6ad45a',
+        borderWidth: 1,
         padding: 10,
         borderRadius: 10,
     },
 
     tag: {
-        backgroundColor: "#a9a9a9",
+        backgroundColor: "#f5b8f1",
         paddingHorizontal: 10,
         paddingVertical: 5,
         borderRadius: 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        minWidth: 60
+        minWidth: 60,
+
     },
     removeTag: {
         borderRadius: 999,

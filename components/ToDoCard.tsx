@@ -1,14 +1,14 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-export default function ToDoCard({ title, description }: { title: string; description: string }) {
+export default function ToDoCard({ title, description, color }: { title: string; description: string, color: string }) {
     return (
         <TouchableOpacity style={styles.card}>
             <View style={styles.cardGrid}>
-                <View style={styles.cardColor} />
+                <View style={[styles.cardColor, { backgroundColor: color }]} />
 
                 <View style={styles.textContainer}>
                     <Text style={styles.title}>{title}</Text>
-                    <Text style={styles.description} numberOfLines={2}        // massimo 2 righe
+                    <Text style={styles.description} numberOfLines={2}
                         ellipsizeMode="tail"
                     >
                         {description}
@@ -27,6 +27,14 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         overflow: 'hidden',
         backgroundColor: 'white',
+        elevation: 5,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
     },
     cardGrid: {
         flexDirection: 'row',

@@ -1,20 +1,19 @@
-import { RootStackParamList } from "@/types";
+import { RootStackParamList, ToDo } from "@/types";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { router } from "expo-router";
 import React, { useState } from "react";
 import { Alert, FlatList, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, "add">;
 
-import { ToDo } from '@/types';
-
 const COLORS = ["red", "#f58021", "#eac605", "green", "#008fff", "blue", "purple"];
 
-export default async function AddToDoScreen() {
+export default function AddToDoScreen() {
     const [todos, setTodos] = useState<ToDo[]>([]);
     const navigation = useNavigation<NavigationProp>();
 
@@ -86,7 +85,9 @@ export default async function AddToDoScreen() {
         <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
             <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 50 }} showsVerticalScrollIndicator={false}>
                 <View style={styles.topBar}>
-                    <View />
+                    <TouchableOpacity onPress={() => router.back()}>
+                        <Ionicons name="arrow-back" size={24} />
+                    </TouchableOpacity>
                     <Text style={styles.pageTitle}>Add new task</Text>
                     <TouchableOpacity onPress={resetPage}>
                         <Ionicons name="trash-outline" size={24} color={"red"} />
